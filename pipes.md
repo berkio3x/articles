@@ -1,4 +1,4 @@
-# working draft
+--working draft
 
 Lets understand how linux pipes work?
 syntax
@@ -60,3 +60,14 @@ On ifrst glance it might seem that prog2 run after pro1 has completed running be
 But at what point data goes from one program to anoter?
 Out from one program is buffered before out  being sent to another program. To avoid this programs can use unbuffered IO using `fflush`
 
+## Behavior of pipes
+
+By default a pipe only capture the stdout of a program and not stderr , you can capture both by redirecting stderr to stdout using **2>&1**
+
+```bash
+command 2>&1 | tee output.log
+```
+
+### Extra details
+Linux pipes are implemented as circualr buffers managed by kernerls. When a process writes to a pipe a small buffer typicall ~64kb in memory is allocated by kernel. 
+This is a form of Iner process communication (IPC) for linux kernel.

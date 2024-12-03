@@ -1,0 +1,2 @@
+List count in each file
+find . -type f -name "*.news" -exec wc -l {} \;

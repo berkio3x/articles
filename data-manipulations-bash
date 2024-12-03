@@ -1,2 +1,6 @@
 List count in each file
 find . -type f -name "*.news" -exec wc -l {} \;
+
+
+Modify each line
+cut -d ',' -f 1 az-negatives.csv | grep -Eo 'http[s]?://[^ ]+' | sed 's/^/"/; s/$/"/' | sed '$!s/$/,/' > output.csv

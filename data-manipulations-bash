@@ -6,3 +6,6 @@ find . -type f -name "*.jsonl" -exec cat {} + | wc -l
 
 Modify each line
 cut -d ',' -f 1 az-negatives.csv | grep -Eo 'http[s]?://[^ ]+' | sed 's/^/"/; s/$/"/' | sed '$!s/$/,/' > output.csv
+
+List all files except
+find . -maxdepth 1 -type f ! -name "*.jsonl" ! -name "*.csv" ! -name "*.checkpoint" ! -name *.log" ! ^Came "*.json"
